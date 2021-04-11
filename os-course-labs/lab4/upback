@@ -1,0 +1,8 @@
+#!/bin/bash
+
+restore=$HOME/restore
+
+backup=$(find $HOME/Backup-* -type d | sort -r | head -n 1)
+
+cp -r $backup/. $restore/
+

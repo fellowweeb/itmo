@@ -1,0 +1,64 @@
+#!/bin/bash
+
+
+
+calc(){ awk "BEGIN { print $*}"; }
+
+
+emptyToZero(){
+    if [ -z "$1" ]; then
+        echo "0"
+    else
+        echo "$1"
+    fi
+}
+
+
+getReadBytes(){
+    if [ -f "/proc/$1/io" ]; then
+        emptyToZero $(grep "read_bytes" /proc/$1/io | awk '{print $2}')
+    else
+        echo "0"
+    fi
+}
+
+getReadBytesForAll(){
+    for pid in $(ls /proc | grep -E "[[:digit:]]+")
+    do
+        echo "$pid $(getReadBytes $pid)"
+    done
+}
+
+
+firstTmpName="7.tmp_first"
+secondTmpName="7.tmp_second"
+
+removeTmp(){
+    rm $firstTmpName
+    rm $secondTmpName
+}
+
+touch $firstTmpName
+touch $secondTmpName
+
+getReadBytesForAll >> $firstTmpName
+
+sleep 60
+
+getReadBytesForAll >> $secondTmpName
+
+IFS=$'\n'
+
+for line in $(cat $secondTmpName)
+do
+    pid=$(echo $line | grep -E -o "^[[:digit:]]+")
+    firstReadCount=$(emptyToZero $(grep -E "^$pid " $firstTmpName | awk '{print $2}'))
+    secondReadCount=$(echo "$line" | awk '{print $2}')
+    diffReadCount=$(calc "$secondReadCount - $firstReadCount")
+    echo "$pid:$diffReadCount:$(ps -p $pid -o args --no-headers)"
+done | sort -t: -k2,2 -n -r | head -n3
+
+removeTmp
+
+
+

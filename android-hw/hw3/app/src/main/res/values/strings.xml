@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Contacts</string>
+    <string name="contactsReadPermissionNotGranted">Not granted contacts read permission</string>
+    <string name="updateContacts">Update contacts</string>
+    <string name="not_available">N/A</string>
+    <string name="send_button">Send button</string>
+    <plurals name="contactsFound">
+        <item quantity="one">Found %d contact</item>
+        <item quantity="other">Found %d contacts</item>
+    </plurals>
+</resources>

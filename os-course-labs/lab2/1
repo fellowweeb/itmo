@@ -1,0 +1,10 @@
+#!/bin/bash
+
+username=fellowweeb
+
+let cnt=$(ps -U $username | wc -l)-2
+
+echo $cnt
+
+ps -U $username | awk '{printf("%8s   %s\n", $1, $4)}'
+

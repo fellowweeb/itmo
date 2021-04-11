@@ -1,0 +1,19 @@
+#!/bin/bash
+
+max_pid=-1
+max_rss=-1
+
+for pid in $(ls /proc | grep -E "^[[:digit:]]+\$")
+do
+    rss=$(grep -s "RSS" /proc/$pid/status | awk '{print $2'})
+    if [[ $rss != "" && $rss -gt $max_rss ]]
+    then
+        max_pid=$pid
+        max_rss=$rss
+    fi
+done 
+
+echo "Pid=$max_pid RSS=$max_rss"
+
+
+#top shift+m

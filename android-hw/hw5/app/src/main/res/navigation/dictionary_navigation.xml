@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dictionary_navigation"
+    app:startDestination="@id/dictionaryFragment">
+
+    <fragment
+        android:id="@+id/dictionaryFragment"
+        android:name="kt.fellowweeb.navigationsample.fragments.CountFragment"
+        android:label="DictionaryFragment" >
+        <action
+            android:id="@+id/action_Fragment_self"
+            app:destination="@id/dictionaryFragment"
+            app:popUpTo="@id/dictionaryFragment" />
+        <argument
+            android:name="count"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+</navigation>

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+man bash | grep -o -E "[[:alpha:]]{4,}" | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -k1,1 -n -r | head -n 3 | awk '{print $2}'
+
+
+

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+shopt -s extglob
+
+changeOperation() {
+    operation=$1
+    echo "Operation=$1"
+}
+
+killAndExit() {
+    echo "$1"
+    kill $pid
+    exit 0
+}
+
+
+(tail -f pipe) | {
+read pid
+operation="+"
+echo "Operation=+"
+value="1"
+echo "Value=1"
+while true
+do
+    read LINE
+    case $LINE in
+        QUIT)
+            killAndExit "Stopping"
+            ;;
+        \*|+)
+            changeOperation "$LINE"
+            ;;
+        ?(-|+)+([0-9]) )
+            let value=$value$operation$LINE
+            echo "Value=$value"
+            ;;
+        *)
+            killAndExit "Error"
+            ;;
+        esac
+done
+
+}

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+trashPath=~/.trash
+
+counterPath=$trashPath/counter
+
+logPath=~/trash.log
+
+filename=$1
+
+
+if [ ! -d "$trashPath" ]
+then
+    mkdir "$trashPath"
+    echo "1" > "$counterPath"
+fi
+
+counter=$(cat "$counterPath")
+
+ln -P "$filename" "$trashPath/$counter"
+
+rm "$filename"
+
+echo "$counter $(pwd) $filename" >> "$logPath"
+
+
+let newCounter=$counter+1
+
+echo "$newCounter" > "$counterPath"

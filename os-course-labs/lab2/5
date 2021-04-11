@@ -1,0 +1,30 @@
+#!/bin/bash
+
+
+calc(){ awk "BEGIN { print $*}"; }
+
+
+last_ppid=0
+art_sum=0
+child_count=0
+
+IFS=$'\n'
+
+for line in $(./4)
+do
+    echo $line
+    ppid=$(echo $line | awk -F ":" '{print $2}' | grep -E -o "[[:digit:]]+")
+    art=$(echo $line | awk -F ":" '{print $3}' | grep -E -o "([[:digit:]]|\.)+")
+    if [ $ppid -ne $last_ppid ] 
+    then
+        echo "Average_Running_Children_of_ParentID=$last_ppid is $(calc "$art_sum / $child_count")"
+        child_count=0
+        art_sum=0
+    fi
+    last_ppid=$ppid
+    let child_count=$child_count+1
+    art_sum=$(calc "$art_sum + $art")
+done
+
+
+

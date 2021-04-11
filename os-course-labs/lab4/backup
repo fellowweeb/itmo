@@ -1,0 +1,48 @@
+#!/bin/bash
+
+currentDate=$(date +%s)
+currentDateHumanReadable=$(date +"%Y-%m-%d")
+
+IFS=$'\n'
+
+log() {
+    echo "$1" >> $HOME/backup-report
+}
+
+backup() {
+    for fullFileName in $(find $HOME/source/. -maxdepth 1 -not -type d -and -not -name '.*')
+    do
+        fileName=$(basename $fullFileName)
+        if [ ! -f "$backupFolder/$fileName" ]
+        then
+            log "Add new $fileName"
+            cp "$fullFileName" "$backupFolder/$fileName"
+        else
+            if [ $(stat --printf="%s" $fullFileName) -ne $(stat --printf="%s" $backupFolder/$fileName) ]
+            then
+                cp "$backupFolder/$fileName" "$backupFolder/$fileName.$currentDateHumanReadable"
+                cp "$fullFileName" "$backupFolder/$fileName"
+                log "Rename $fileName to $fileName.$currentDateHumanReadable and add new version"
+            fi
+        fi
+    done
+}
+
+
+for ((i=0; i < 7; i++))
+do
+    dateBefore=$(date -d "$i day ago" +"%Y-%m-%d")
+    backupFolder=~/Backup-$dateBefore
+    if [ -d "$backupFolder" ]
+    then
+        log "Edit $backupFolder at $(date)"
+        backup $backupFolder
+        exit 0
+    fi
+done
+
+backupFolder=~/Backup-$(date +"%Y-%m-%d")
+mkdir "$backupFolder"
+log "Create $backupFolder at $(date)"
+backup $backupFolder
+

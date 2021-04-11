@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+ret=""
+while read line
+do
+    if [[ $line == "q" ]]
+    then break
+    fi
+    ret="$ret $line"
+done
+echo "${ret:1}"
+
+

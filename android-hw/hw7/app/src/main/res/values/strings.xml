@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FakeAPIBoard</string>
+    <string name="title">Title</string>
+    <string name="content">Content</string>
+    <string name="send_button">send button</string>
+    <string name="remove_button">remove button</string>
+    <string name="post_deleted">Post deleted</string>
+    <string name="post_created">Post created</string>
+    <string name="loaded_posts">Loaded posts</string>
+    <string name="cant_connect">Can\'t connect</string>
+    <string name="error">Error</string>
+    <string name="resync">resync</string>
+</resources>

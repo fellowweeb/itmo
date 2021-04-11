@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalMiddle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalMiddleBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.74" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVerticalLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVerticalRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        style="@style/Element"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/currentWeatherImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/clouds_sun"
+        app:layout_constraintBottom_toTopOf="@+id/currentDegreesTextView"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalTop"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/currentDegreesTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="32°"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/currentLocationTextView"
+        app:layout_constraintEnd_toEndOf="@+id/currentWeatherImageView"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
+        app:layout_constraintStart_toStartOf="@+id/currentWeatherImageView"
+        app:layout_constraintTop_toBottomOf="@id/currentWeatherImageView" />
+
+    <TextView
+        android:id="@+id/currentLocationTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="London"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalMiddle"
+        app:layout_constraintEnd_toEndOf="@+id/currentWeatherImageView"
+        app:layout_constraintStart_toStartOf="@+id/currentWeatherImageView"
+        app:layout_constraintTop_toBottomOf="@id/currentDegreesTextView" />
+
+    <TextView
+        android:id="@+id/windFlowTopTextView"
+        style="@style/ComplexInfo.Value"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="78"
+        app:layout_constraintBottom_toTopOf="@+id/windFlowImageView"
+        app:layout_constraintEnd_toStartOf="@+id/precipitationTopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVerticalLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalMiddle"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/windFlowImageView"
+        style="@style/ComplexInfo"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/windFlowBottomTextView"
+        app:layout_constraintEnd_toEndOf="@+id/windFlowTopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/windFlowTopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/windFlowTopTextView"
+        app:srcCompat="@drawable/wind" />
+
+    <TextView
+        android:id="@+id/windFlowBottomTextView"
+        style="@style/ComplexInfo.Description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/wind_flow"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalMiddleBottom"
+        app:layout_constraintEnd_toEndOf="@+id/windFlowTopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/windFlowTopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/windFlowImageView" />
+
+    <TextView
+        android:id="@+id/precipitationTopTextView"
+        style="@style/ComplexInfo.Value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="52"
+        app:layout_constraintBottom_toTopOf="@+id/precipitationImageView"
+        app:layout_constraintEnd_toStartOf="@+id/humidityTopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/windFlowTopTextView"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalMiddle"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/precipitationImageView"
+        style="@style/ComplexInfo"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/precipitationBottomTextView"
+        app:layout_constraintEnd_toEndOf="@+id/precipitationTopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/precipitationTopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/precipitationTopTextView"
+        app:srcCompat="@drawable/precipitation" />
+
+    <TextView
+        android:id="@+id/precipitationBottomTextView"
+        style="@style/ComplexInfo.Description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/precipitation"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalMiddleBottom"
+        app:layout_constraintEnd_toEndOf="@+id/precipitationTopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/precipitationTopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/precipitationImageView" />
+
+    <TextView
+        android:id="@+id/humidityTopTextView"
+        style="@style/ComplexInfo.Value"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="89"
+        app:layout_constraintBottom_toTopOf="@+id/humidityImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVerticalRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/precipitationTopTextView"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalMiddle"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/humidityImageView"
+        style="@style/ComplexInfo"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/humidityBottomTextView"
+        app:layout_constraintEnd_toEndOf="@+id/humidityTopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/humidityTopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/humidityTopTextView"
+        app:srcCompat="@drawable/rain" />
+
+    <TextView
+        android:id="@+id/humidityBottomTextView"
+        style="@style/ComplexInfo.Description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/humidity"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalMiddleBottom"
+        app:layout_constraintEnd_toEndOf="@+id/humidityTopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/humidityTopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/humidityImageView" />
+
+    <TextView
+        android:id="@+id/nextDay1TopTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/monday"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay1ImageView"
+        app:layout_constraintEnd_toStartOf="@+id/nextDay2TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@id/guidelineVerticalLeft"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalMiddleBottom"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/nextDay2TopTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tuesday"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay2ImageView"
+        app:layout_constraintEnd_toStartOf="@+id/nextDay3TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nextDay1TopTextView"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalMiddleBottom"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/nextDay3TopTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/wednesday"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay3ImageView"
+        app:layout_constraintEnd_toStartOf="@+id/nextDay4TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nextDay2TopTextView"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalMiddleBottom"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/nextDay4TopTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/thursday"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay4ImageView"
+        app:layout_constraintEnd_toStartOf="@+id/nextDay5TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nextDay3TopTextView"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalMiddleBottom"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/nextDay5TopTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/friday"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay5ImageView"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nextDay4TopTextView"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalMiddleBottom"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ImageView
+        android:id="@+id/nextDay1ImageView"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        style="@style/NextDays"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay1BottomTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay1TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay1TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay1TopTextView"
+        app:srcCompat="@drawable/sun" />
+
+    <ImageView
+        android:id="@+id/nextDay2ImageView"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        style="@style/NextDays"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay2BottomTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay2TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay2TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay2TopTextView"
+        app:srcCompat="@drawable/sun" />
+
+    <ImageView
+        android:id="@+id/nextDay3ImageView"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        style="@style/NextDays"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay3BottomTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay3TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay3TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay3TopTextView"
+        app:srcCompat="@drawable/sun" />
+
+    <ImageView
+        android:id="@+id/nextDay4ImageView"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        style="@style/NextDays"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay4BottomTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay4TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay4TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay4TopTextView"
+        app:srcCompat="@drawable/sun" />
+
+    <ImageView
+        android:id="@+id/nextDay5ImageView"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        style="@style/NextDays"
+        app:layout_constraintBottom_toTopOf="@+id/nextDay5BottomTextView"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay5TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay5TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay5TopTextView"
+        app:srcCompat="@drawable/sun" />
+
+
+    <TextView
+        android:id="@+id/nextDay1BottomTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="32°"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalBottom"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay1TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay1TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay1ImageView" />
+
+    <TextView
+        android:id="@+id/nextDay2BottomTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="32°"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalBottom"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay2TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay2TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay2ImageView" />
+
+    <TextView
+        android:id="@+id/nextDay3BottomTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="32°"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalBottom"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay3TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay3TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay3ImageView" />
+
+    <TextView
+        android:id="@+id/nextDay4BottomTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="32°"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalBottom"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay4TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay4TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay4ImageView" />
+
+    <TextView
+        android:id="@+id/nextDay5BottomTextView"
+        style="@style/NextDays.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="32°"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontalBottom"
+        app:layout_constraintEnd_toEndOf="@+id/nextDay5TopTextView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/nextDay5TopTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nextDay5ImageView" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        style="@style/Element"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalBottom"
+        app:srcCompat="@drawable/home" />
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        style="@style/Element"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/placesButton"
+        app:layout_constraintStart_toEndOf="@+id/homeButton"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalBottom"
+        app:srcCompat="@drawable/settings" />
+
+    <ImageButton
+        android:id="@+id/placesButton"
+        style="@style/Element"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mapButton"
+        app:layout_constraintStart_toEndOf="@+id/settingsButton"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalBottom"
+        app:srcCompat="@drawable/dehaze" />
+
+    <ImageButton
+        android:id="@+id/mapButton"
+        style="@style/Element"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/placesButton"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontalBottom"
+        app:srcCompat="@drawable/location" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

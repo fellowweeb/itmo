@@ -1,0 +1,35 @@
+#!/bin/bash
+
+mode="+"
+value=1
+
+usr1() {
+    mode="+"
+}
+
+usr2() {
+    mode="*"
+}
+
+term() {
+    echo "Stopping"
+    exit 0
+}
+
+trap 'usr1' USR1
+trap 'usr2' USR2
+trap 'term' TERM
+
+while true
+do
+    case $mode in
+        +)
+            let value=$value+2
+            ;;
+        \*)
+            let value=$value*2
+            ;;
+        esac
+echo "$value"
+sleep 1
+done

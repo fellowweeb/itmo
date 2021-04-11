@@ -1,0 +1,12 @@
+#!/bin/bash
+
+rm pipe
+mkfifo pipe
+
+echo "$$" > pipe
+
+while true
+do
+    read LINE
+    echo "$LINE" > pipe
+done

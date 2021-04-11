@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Контакты</string>
+    <string name="contactsReadPermissionNotGranted">Нет доступа к контактам</string>
+    <string name="updateContacts">Обновить контакты</string>
+    <string name="not_available">Н/П</string>
+    <string name="send_button">Кнопка отправить</string>
+    <plurals name="contactsFound">
+        <item quantity="one">Найден %d контакт</item>
+        <item quantity="few">Найдено %d контакта</item>
+        <item quantity="many">Найдено %d контактов</item>
+    </plurals>
+</resources>

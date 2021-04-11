@@ -1,0 +1,8 @@
+#!/bin/bash
+
+log_path=/var/log/Xorg.0.log
+res_path=full.log
+
+grep -E "] \(WW\)" $log_path > $res_path
+grep -E "] \(II\)" $log_path >> $res_path
+sed -i 's/(II)/Information:/g;s/(WW)/Warning:/g' $res_path

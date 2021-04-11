@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+pid=$(pgrep 6.listener)
+
+
+while true
+do
+    read LINE
+    case $LINE in
+        +)
+            kill -s USR1 $pid
+            ;;
+        \*)
+            kill -s USR2 $pid
+            ;;
+        TERM)
+            kill -s TERM $pid
+            exit 0
+            ;;
+        esac
+done

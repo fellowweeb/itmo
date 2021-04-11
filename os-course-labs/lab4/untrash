@@ -1,0 +1,70 @@
+#!/bin/bash
+
+trashPath=~/.trash
+
+logPath=~/trash.log
+
+IFS=$'\n'
+
+
+rm $trashPath/newlog 2> /dev/null
+touch $trashPath/newlog
+removed=false
+
+createLink() {
+    local path=$1
+    local filename=$2
+    local linkPath=$3
+    
+    ln -P "$linkPath" "$path/$filename"
+    
+    rm $linkPath
+
+    removed=true
+}
+
+
+for line in $(cat "$logPath")
+do
+    removed=false
+    linkname=$(echo "$line" | awk '{print $1}')
+    path=$(echo "$line" | awk '{print $2}')
+    filename=$(echo "$line" | cut -d " " -f 3-)
+    if [ "$filename" == "$1" ]
+    then
+        echo "Restore file: $path/$filename ?"
+        echo "Type \"yes\" to restore, anything else to skip"
+        read answer
+        if [ "$answer" == "yes" ]
+        then
+            if [ -d "$path" ]
+            then
+                createLink "$path" "$filename" "$trashPath/$linkname"
+            else
+                echo "Directory $path does not exits, restoring file to home directory"
+                if [ -f "$HOME/$filename" ]
+                then
+                    echo "File $file already exists in home directory, enter new name for restoring file"
+                    read newFilename
+                    if [ -f "$HOME/$filename" ]
+                    then
+                        echo "File $newFilename exists too, skipping restoring"
+                    else
+                        createLink "$HOME" "$newFilename" "$trashPath/$linkname"
+                    fi
+                else
+                    createLink "$HOME" "$filename" "$trashPath/$linkname"
+                fi  
+            fi        
+
+        fi
+    fi
+    if [ "$removed" == "false" ]
+    then
+        echo "$line" >> $trashPath/newlog
+    fi
+done
+
+cat $trashPath/newlog > $logPath
+
+rm $trashPath/newlog

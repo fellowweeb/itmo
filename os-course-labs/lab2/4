@@ -1,0 +1,24 @@
+#!/bin/bash
+
+calc(){ awk "BEGIN { print $*}"; }
+
+getSchedValue(){
+    echo $(grep "$2" /proc/$1/sched | awk '{print $3}')
+}
+
+printBurstForProcess(){
+    if [ -d "/proc/$1" ]
+    then
+        ppid=$(grep "^PPid" /proc/$1/status | awk '{print $2}')
+        sum_exec_runtime=$(getSchedValue $1 se.sum_exec_runtime)
+        nr_switches=$(getSchedValue $1 nr_switches)
+        echo "ProcessID=$1 : Parent_ProcessID=$ppid : Average_Running_Time=$(calc "$sum_exec_runtime / $nr_switches")"
+    fi
+}
+
+for pid in $(ps h -ef | awk '{print $2}')
+do
+    printBurstForProcess $pid
+done | sort -t':' -k2,2 -k1,1 -V
+
+
